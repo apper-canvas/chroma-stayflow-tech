@@ -337,8 +337,9 @@ const handleViewDetails = (reservation) => {
         isOpen={showAddModal}
         onClose={() => setShowAddModal(false)}
         onSuccess={loadReservations}
-      />
+/>
     </div>
   );
+};
 
 export default Reservations;
