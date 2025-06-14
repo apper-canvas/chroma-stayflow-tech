@@ -58,7 +58,8 @@ const Layout = () => {
     {/* Header */}
     <header
         className="flex-shrink-0 h-16 bg-surface border-b border-surface-200 z-40">
-        <div className="flex items-center justify-between h-full px-4 lg:px-6">
+<div className="flex items-center justify-between h-full px-4 lg:px-6">
+            {/* Left Section */}
             <div className="flex items-center space-x-4">
                 <button
                     onClick={toggleMobileMenu}
@@ -68,11 +69,15 @@ const Layout = () => {
                 <div className="flex items-center space-x-3">
                     <div
                         className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-<ApperIcon name="Hotel" size={20} className="text-white" />
+                        <ApperIcon name="Hotel" size={20} className="text-white" />
                     </div>
                     <h1 className="text-xl font-heading font-semibold text-primary">StayFlow</h1>
                 </div>
-{/* Notification Button */}
+            </div>
+            
+            {/* Right Section */}
+            <div className="flex items-center space-x-4">
+                {/* Notification Button */}
                 <button
                     className="p-2 rounded-lg hover:bg-surface-100 transition-colors relative">
                     <ApperIcon name="Bell" size={20} className="text-surface-600" />
@@ -81,7 +86,7 @@ const Layout = () => {
                     </span>
                 </button>
 
-{/* Profile Dropdown */}
+                {/* Profile Dropdown */}
                 <div className="relative" ref={dropdownRef}>
                     <button
                         onClick={toggleProfileDropdown}
@@ -95,7 +100,7 @@ const Layout = () => {
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.95, y: -10 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute right-0 top-full mt-3 w-48 bg-white rounded-lg shadow-xl border border-surface-200 py-2 z-[9999] min-w-max">
+                                className="absolute right-0 top-full mt-3 w-48 bg-white rounded-lg shadow-xl border border-surface-200 py-2 z-[99999] min-w-max">
                                 <button
                                     onClick={handleMyProfile}
                                     className="w-full text-left px-4 py-2 text-sm text-surface-700 hover:bg-surface-50 transition-colors flex items-center space-x-2">
