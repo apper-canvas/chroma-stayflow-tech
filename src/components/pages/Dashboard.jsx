@@ -69,31 +69,31 @@ const Dashboard = () => {
     }
   };
 
-  const handleCheckIn = async (reservation) => {
+const handleCheckIn = async (reservation) => {
     try {
-      await reservationService.update(reservation.id, { status: 'checked-in' });
-      toast.success(`${reservation.guestName} checked in successfully`);
+      await reservationService.update(reservation.Id, { status: 'checked-in' });
+      toast.success(`${reservation.guest_name} checked in successfully`);
       loadDashboardData();
     } catch (err) {
       toast.error('Failed to check in guest');
     }
   };
 
-  const handleCheckOut = async (reservation) => {
+const handleCheckOut = async (reservation) => {
     try {
-      await reservationService.update(reservation.id, { status: 'checked-out' });
-      toast.success(`${reservation.guestName} checked out successfully`);
+      await reservationService.update(reservation.Id, { status: 'checked-out' });
+      toast.success(`${reservation.guest_name} checked out successfully`);
       loadDashboardData();
     } catch (err) {
       toast.error('Failed to check out guest');
     }
   };
 
-  const handleTaskUpdate = async (taskId, status) => {
+const handleTaskUpdate = async (taskId, status) => {
     try {
       const updateData = { status };
       if (status === 'completed') {
-        updateData.completedTime = new Date().toISOString();
+        updateData.completed_time = new Date().toISOString();
       }
       await housekeepingService.update(taskId, updateData);
       toast.success('Task updated successfully');
@@ -109,32 +109,32 @@ const Dashboard = () => {
   const availableRooms = rooms.filter(room => room.status === 'available').length;
   const maintenanceRooms = rooms.filter(room => room.status === 'maintenance').length;
   
-  const totalRevenue = reservations
+const totalRevenue = reservations
     .filter(r => r.status === 'checked-in' || r.status === 'checked-out')
-    .reduce((sum, r) => sum + r.totalAmount, 0);
+    .reduce((sum, r) => sum + (r.total_amount || 0), 0);
 
   // Generate activity feed
-  const activities = [
+const activities = [
     ...todayArrivals.map(reservation => ({
-      id: `arrival-${reservation.id}`,
+      id: `arrival-${reservation.Id}`,
       type: 'check-in',
-      title: `${reservation.guestName} arrival`,
-      description: `Room ${reservation.roomId} - Expected at ${format(new Date(reservation.checkIn), 'h:mm a')}`,
-      timestamp: reservation.checkIn
+      title: `${reservation.guest_name} arrival`,
+      description: `Room ${reservation.room_id} - Expected at ${format(new Date(reservation.check_in), 'h:mm a')}`,
+      timestamp: reservation.check_in
     })),
     ...todayDepartures.map(reservation => ({
-      id: `departure-${reservation.id}`,
+      id: `departure-${reservation.Id}`,
       type: 'check-out',
-      title: `${reservation.guestName} departure`,
-      description: `Room ${reservation.roomId} - Expected at ${format(new Date(reservation.checkOut), 'h:mm a')}`,
-      timestamp: reservation.checkOut
+      title: `${reservation.guest_name} departure`,
+      description: `Room ${reservation.room_id} - Expected at ${format(new Date(reservation.check_out), 'h:mm a')}`,
+      timestamp: reservation.check_out
     })),
     ...tasks.slice(0, 3).map(task => ({
-      id: `task-${task.id}`,
+      id: `task-${task.Id}`,
       type: task.type.includes('maintenance') ? 'maintenance' : 'cleaning',
-      title: `${task.type.replace('-', ' ')} - Room ${task.roomId}`,
-      description: `Assigned to ${task.assignedTo} - ${task.status}`,
-      timestamp: task.scheduledTime
+      title: `${task.type.replace('-', ' ')} - Room ${task.room_id}`,
+      description: `Assigned to ${task.assigned_to} - ${task.status}`,
+      timestamp: task.scheduled_time
     }))
   ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)).slice(0, 8);
 

@@ -89,8 +89,8 @@ const Housekeeping = () => {
     }
   };
 
-  const handleViewDetails = (task) => {
-    toast.info(`Viewing task details for Room ${task.roomId}`);
+const handleViewDetails = (task) => {
+    toast.info(`Viewing task details for Room ${task.room_id}`);
   };
 
   const handleCreateTask = () => {

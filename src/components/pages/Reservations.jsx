@@ -51,10 +51,10 @@ const Reservations = () => {
     // Search filter
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(reservation =>
-        reservation.guestName.toLowerCase().includes(query) ||
-        reservation.guestEmail.toLowerCase().includes(query) ||
-        reservation.roomId.toLowerCase().includes(query)
+filtered = filtered.filter(reservation =>
+        reservation.guest_name.toLowerCase().includes(query) ||
+        reservation.guest_email.toLowerCase().includes(query) ||
+        String(reservation.room_id).toLowerCase().includes(query)
       );
     }
 
@@ -67,19 +67,19 @@ const Reservations = () => {
     const today = new Date();
     const todayStr = today.toDateString();
     
-    if (dateFilter === 'today') {
+if (dateFilter === 'today') {
       filtered = filtered.filter(reservation =>
-        new Date(reservation.checkIn).toDateString() === todayStr ||
-        new Date(reservation.checkOut).toDateString() === todayStr
+        new Date(reservation.check_in).toDateString() === todayStr ||
+        new Date(reservation.check_out).toDateString() === todayStr
       );
     } else if (dateFilter === 'upcoming') {
       filtered = filtered.filter(reservation =>
-        new Date(reservation.checkIn) > today
+        new Date(reservation.check_in) > today
       );
     } else if (dateFilter === 'current') {
       filtered = filtered.filter(reservation =>
-        new Date(reservation.checkIn) <= today &&
-        new Date(reservation.checkOut) >= today &&
+        new Date(reservation.check_in) <= today &&
+        new Date(reservation.check_out) >= today &&
         reservation.status === 'checked-in'
       );
     }
@@ -87,28 +87,28 @@ const Reservations = () => {
     setFilteredReservations(filtered);
   };
 
-  const handleCheckIn = async (reservation) => {
+const handleCheckIn = async (reservation) => {
     try {
-      await reservationService.update(reservation.id, { status: 'checked-in' });
-      toast.success(`${reservation.guestName} checked in successfully`);
+      await reservationService.update(reservation.Id, { status: 'checked-in' });
+      toast.success(`${reservation.guest_name} checked in successfully`);
       loadReservations();
     } catch (err) {
       toast.error('Failed to check in guest');
     }
   };
 
-  const handleCheckOut = async (reservation) => {
+const handleCheckOut = async (reservation) => {
     try {
-      await reservationService.update(reservation.id, { status: 'checked-out' });
-      toast.success(`${reservation.guestName} checked out successfully`);
+      await reservationService.update(reservation.Id, { status: 'checked-out' });
+      toast.success(`${reservation.guest_name} checked out successfully`);
       loadReservations();
     } catch (err) {
       toast.error('Failed to check out guest');
     }
   };
 
-  const handleViewDetails = (reservation) => {
-    toast.info(`Viewing details for ${reservation.guestName}`);
+const handleViewDetails = (reservation) => {
+    toast.info(`Viewing details for ${reservation.guest_name}`);
   };
 
   const getStatusStats = () => {

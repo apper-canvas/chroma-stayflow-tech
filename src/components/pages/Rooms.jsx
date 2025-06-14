@@ -59,8 +59,8 @@ const Rooms = () => {
     const currentIndex = statusOptions.indexOf(room.status);
     const nextStatus = statusOptions[(currentIndex + 1) % statusOptions.length];
 
-    try {
-      await roomService.update(room.id, { status: nextStatus });
+try {
+      await roomService.update(room.Id, { status: nextStatus });
       toast.success(`Room ${room.number} status updated to ${nextStatus}`);
       loadRooms();
     } catch (err) {
