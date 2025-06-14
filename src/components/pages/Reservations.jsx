@@ -330,8 +330,7 @@ const handleViewDetails = (reservation) => {
 </div>
           ))}
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
 
       {/* Add Reservation Modal */}
       <AddReservationModal
