@@ -81,21 +81,21 @@ const Layout = () => {
                     </span>
                 </button>
 
-                {/* Profile Dropdown */}
+{/* Profile Dropdown */}
                 <div className="relative" ref={dropdownRef}>
                     <button
                         onClick={toggleProfileDropdown}
                         className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center hover:bg-secondary-dark transition-colors">
                         <ApperIcon name="User" size={16} className="text-primary" />
                     </button>
-<AnimatePresence>
+                    <AnimatePresence>
                         {profileDropdownOpen && (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.95, y: -10 }}
-animate={{ opacity: 1, scale: 1, y: 0 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.95, y: -10 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-surface-200 py-1 z-50">
+                                className="absolute right-0 top-full mt-3 w-48 bg-white rounded-lg shadow-xl border border-surface-200 py-2 z-[9999] min-w-max">
                                 <button
                                     onClick={handleMyProfile}
                                     className="w-full text-left px-4 py-2 text-sm text-surface-700 hover:bg-surface-50 transition-colors flex items-center space-x-2">
