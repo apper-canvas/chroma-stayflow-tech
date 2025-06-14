@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import { format } from 'date-fns';
-import { reservationService } from '@/services';
-import ReservationCard from '@/components/molecules/ReservationCard';
-import Button from '@/components/atoms/Button';
-import Input from '@/components/atoms/Input';
-import Badge from '@/components/atoms/Badge';
-import ApperIcon from '@/components/ApperIcon';
-import SkeletonLoader from '@/components/molecules/SkeletonLoader';
-import ErrorState from '@/components/molecules/ErrorState';
-import EmptyState from '@/components/molecules/EmptyState';
-
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import { format } from "date-fns";
+import { reservationService } from "@/services";
+import ReservationCard from "@/components/molecules/ReservationCard";
+import Button from "@/components/atoms/Button";
+import Input from "@/components/atoms/Input";
+import Badge from "@/components/atoms/Badge";
+import ApperIcon from "@/components/ApperIcon";
+import SkeletonLoader from "@/components/molecules/SkeletonLoader";
+import ErrorState from "@/components/molecules/ErrorState";
+import EmptyState from "@/components/molecules/EmptyState";
+import AddReservationModal from "@/components/modals/AddReservationModal";
 const Reservations = () => {
   const [reservations, setReservations] = useState([]);
   const [filteredReservations, setFilteredReservations] = useState([]);
@@ -20,7 +20,7 @@ const Reservations = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [dateFilter, setDateFilter] = useState('all');
-
+  const [showAddModal, setShowAddModal] = useState(false);
   useEffect(() => {
     loadReservations();
   }, []);
@@ -195,7 +195,7 @@ const handleViewDetails = (reservation) => {
             Manage guest bookings and check-ins
           </p>
         </div>
-        <div className="flex space-x-3">
+<div className="flex space-x-3">
           <Button
             variant="outline"
             icon="RefreshCw"
@@ -206,7 +206,7 @@ const handleViewDetails = (reservation) => {
           <Button
             variant="primary"
             icon="Plus"
-            onClick={() => toast.info('Opening new reservation form...')}
+            onClick={() => setShowAddModal(true)}
           >
             New Reservation
           </Button>
@@ -327,12 +327,19 @@ const handleViewDetails = (reservation) => {
               <p className="text-sm text-surface-600">
                 {filter.label}
               </p>
-            </div>
+</div>
           ))}
         </div>
-      </motion.div>
+      </div>
+    </motion.div>
+
+      {/* Add Reservation Modal */}
+      <AddReservationModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSuccess={loadReservations}
+      />
     </div>
   );
-};
 
 export default Reservations;

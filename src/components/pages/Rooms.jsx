@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import { roomService } from '@/services';
-import RoomCard from '@/components/molecules/RoomCard';
-import Button from '@/components/atoms/Button';
-import Badge from '@/components/atoms/Badge';
-import ApperIcon from '@/components/ApperIcon';
-import SkeletonLoader from '@/components/molecules/SkeletonLoader';
-import ErrorState from '@/components/molecules/ErrorState';
-import EmptyState from '@/components/molecules/EmptyState';
-
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import { roomService } from "@/services";
+import RoomCard from "@/components/molecules/RoomCard";
+import Button from "@/components/atoms/Button";
+import Badge from "@/components/atoms/Badge";
+import ApperIcon from "@/components/ApperIcon";
+import SkeletonLoader from "@/components/molecules/SkeletonLoader";
+import ErrorState from "@/components/molecules/ErrorState";
+import EmptyState from "@/components/molecules/EmptyState";
+import AddRoomModal from "@/components/modals/AddRoomModal";
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
   const [filteredRooms, setFilteredRooms] = useState([]);
@@ -17,7 +17,7 @@ const Rooms = () => {
   const [error, setError] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [selectedFloor, setSelectedFloor] = useState('all');
-
+  const [showAddModal, setShowAddModal] = useState(false);
   useEffect(() => {
     loadRooms();
   }, []);
@@ -57,9 +57,9 @@ const Rooms = () => {
   const handleStatusChange = async (room) => {
     const statusOptions = ['available', 'occupied', 'maintenance', 'checkout', 'reserved'];
     const currentIndex = statusOptions.indexOf(room.status);
-    const nextStatus = statusOptions[(currentIndex + 1) % statusOptions.length];
+const nextStatus = statusOptions[(currentIndex + 1) % statusOptions.length];
 
-try {
+    try {
       await roomService.update(room.Id, { status: nextStatus });
       toast.success(`Room ${room.number} status updated to ${nextStatus}`);
       loadRooms();
@@ -155,7 +155,7 @@ try {
             Manage room status and availability
           </p>
         </div>
-        <div className="flex space-x-3">
+<div className="flex space-x-3">
           <Button
             variant="outline"
             icon="RefreshCw"
@@ -166,7 +166,7 @@ try {
           <Button
             variant="primary"
             icon="Plus"
-            onClick={() => toast.info('Opening add room form...')}
+            onClick={() => setShowAddModal(true)}
           >
             Add Room
           </Button>
@@ -278,8 +278,15 @@ try {
               </p>
             </div>
           ))}
-        </div>
+</div>
       </motion.div>
+
+      {/* Add Room Modal */}
+      <AddRoomModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSuccess={loadRooms}
+      />
     </div>
   );
 };

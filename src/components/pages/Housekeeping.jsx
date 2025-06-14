@@ -10,7 +10,7 @@ import ApperIcon from '@/components/ApperIcon';
 import SkeletonLoader from '@/components/molecules/SkeletonLoader';
 import ErrorState from '@/components/molecules/ErrorState';
 import EmptyState from '@/components/molecules/EmptyState';
-
+import AddTaskModal from '@/components/modals/AddTaskModal';
 const Housekeeping = () => {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -19,7 +19,7 @@ const Housekeeping = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedPriority, setSelectedPriority] = useState('all');
   const [selectedType, setSelectedType] = useState('all');
-
+  const [showAddModal, setShowAddModal] = useState(false);
   useEffect(() => {
     loadTasks();
   }, []);
@@ -93,8 +93,8 @@ const handleViewDetails = (task) => {
     toast.info(`Viewing task details for Room ${task.room_id}`);
   };
 
-  const handleCreateTask = () => {
-    toast.info('Opening task creation form...');
+const handleCreateTask = () => {
+    setShowAddModal(true);
   };
 
   const getStatusStats = () => {
@@ -198,7 +198,7 @@ const handleViewDetails = (task) => {
             Manage cleaning tasks and room maintenance
           </p>
         </div>
-        <div className="flex space-x-3">
+<div className="flex space-x-3">
           <Button
             variant="outline"
             icon="RefreshCw"
@@ -360,8 +360,15 @@ const handleViewDetails = (task) => {
             </p>
             <p className="text-sm text-surface-600">High Priority</p>
           </div>
-        </div>
+</div>
       </motion.div>
+
+      {/* Add Task Modal */}
+      <AddTaskModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSuccess={loadTasks}
+      />
     </div>
   );
 };
