@@ -89,14 +89,14 @@ const Layout = () => {
                         <ApperIcon name="User" size={16} className="text-primary" />
                     </button>
                     
-                    <AnimatePresence>
+<AnimatePresence>
                         {profileDropdownOpen && (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.95, y: -10 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.95, y: -10 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-surface-200 py-1 z-50">
+                                className="absolute right-0 top-0 w-48 bg-white rounded-lg shadow-lg border border-surface-200 py-1 z-50">
                                 <button
                                     onClick={handleMyProfile}
                                     className="w-full text-left px-4 py-2 text-sm text-surface-700 hover:bg-surface-50 transition-colors flex items-center space-x-2">
