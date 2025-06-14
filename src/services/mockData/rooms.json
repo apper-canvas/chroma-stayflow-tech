@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "number": "101",
+    "type": "Standard Single",
+    "status": "occupied",
+    "cleaningStatus": "clean",
+    "floor": 1,
+    "amenities": ["WiFi", "AC", "TV", "Mini Bar"],
+    "rate": 89.99
+  },
+  {
+    "id": "2",
+    "number": "102",
+    "type": "Standard Double",
+    "status": "available",
+    "cleaningStatus": "clean",
+    "floor": 1,
+    "amenities": ["WiFi", "AC", "TV", "Mini Bar", "Balcony"],
+    "rate": 129.99
+  },
+  {
+    "id": "3",
+    "number": "103",
+    "type": "Standard Single",
+    "status": "checkout",
+    "cleaningStatus": "dirty",
+    "floor": 1,
+    "amenities": ["WiFi", "AC", "TV"],
+    "rate": 89.99
+  },
+  {
+    "id": "4",
+    "number": "201",
+    "type": "Deluxe Double",
+    "status": "maintenance",
+    "cleaningStatus": "out-of-order",
+    "floor": 2,
+    "amenities": ["WiFi", "AC", "TV", "Mini Bar", "Balcony", "Ocean View"],
+    "rate": 179.99
+  },
+  {
+    "id": "5",
+    "number": "202",
+    "type": "Suite",
+    "status": "available",
+    "cleaningStatus": "clean",
+    "floor": 2,
+    "amenities": ["WiFi", "AC", "TV", "Mini Bar", "Balcony", "Ocean View", "Jacuzzi"],
+    "rate": 249.99
+  },
+  {
+    "id": "6",
+    "number": "203",
+    "type": "Standard Double",
+    "status": "occupied",
+    "cleaningStatus": "clean",
+    "floor": 2,
+    "amenities": ["WiFi", "AC", "TV", "Mini Bar"],
+    "rate": 129.99
+  },
+  {
+    "id": "7",
+    "number": "301",
+    "type": "Deluxe Double",
+    "status": "reserved",
+    "cleaningStatus": "clean",
+    "floor": 3,
+    "amenities": ["WiFi", "AC", "TV", "Mini Bar", "Balcony", "City View"],
+    "rate": 159.99
+  },
+  {
+    "id": "8",
+    "number": "302",
+    "type": "Standard Single",
+    "status": "available",
+    "cleaningStatus": "dirty",
+    "floor": 3,
+    "amenities": ["WiFi", "AC", "TV"],
+    "rate": 89.99
+  }
+]

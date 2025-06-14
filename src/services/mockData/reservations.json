@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "guestName": "Sarah Johnson",
+    "guestEmail": "sarah.johnson@email.com",
+    "guestPhone": "+1-555-0123",
+    "roomId": "1",
+    "checkIn": "2024-01-15T15:00:00",
+    "checkOut": "2024-01-18T11:00:00",
+    "status": "checked-in",
+    "totalAmount": 269.97,
+    "notes": "Late check-in requested"
+  },
+  {
+    "id": "2",
+    "guestName": "Michael Chen",
+    "guestEmail": "m.chen@business.com",
+    "guestPhone": "+1-555-0124",
+    "roomId": "6",
+    "checkIn": "2024-01-14T14:00:00",
+    "checkOut": "2024-01-16T12:00:00",
+    "status": "checked-in",
+    "totalAmount": 259.98,
+    "notes": "Business traveler, quiet room preferred"
+  },
+  {
+    "id": "3",
+    "guestName": "Emma Rodriguez",
+    "guestEmail": "emma.r@gmail.com",
+    "guestPhone": "+1-555-0125",
+    "roomId": "7",
+    "checkIn": "1/16/2024 4:00:00 PM",
+    "checkOut": "2024-01-19T10:00:00",
+    "status": "confirmed",
+    "totalAmount": 479.97,
+    "notes": "Honeymoon stay, anniversary surprise"
+  },
+  {
+    "id": "4",
+    "guestName": "David Thompson",
+    "guestEmail": "d.thompson@email.com",
+    "guestPhone": "+1-555-0126",
+    "roomId": "3",
+    "checkIn": "2024-01-15T13:00:00",
+    "checkOut": "2024-01-16T11:00:00",
+    "status": "checked-out",
+    "totalAmount": 89.99,
+    "notes": "Early departure"
+  },
+  {
+    "id": "5",
+    "guestName": "Lisa Anderson",
+    "guestEmail": "lisa.anderson@company.com",
+    "guestPhone": "+1-555-0127",
+    "roomId": "2",
+    "checkIn": "2024-01-16T15:00:00",
+    "checkOut": "2024-01-20T11:00:00",
+    "status": "confirmed",
+    "totalAmount": 519.96,
+    "notes": "Extended business stay"
+  }
+]
